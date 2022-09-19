@@ -1,0 +1,41 @@
+//Optimal Solution
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        
+        ListNode slow = head, fast = head;
+        
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+     }
+ }    
+ 
+ Time Complexity O(n) and Space Complexity O(1)
+ 
+ //Brute Force Approach
+ 
+ class Solution {
+    public ListNode middleNode(ListNode head) {
+         int size = 1;
+        
+         ListNode currentNode = head;
+         while(currentNode.next != null){
+             size++;
+         }
+        
+         int middle = size / 2;
+         middle = middle+1;
+        
+         int i = 1;
+         ListNode middleNode = head;
+         while(i <= middle){
+             middleNode = middleNode.next;
+             i++;
+         }  
+        return middleNode;
+    }
+}
+
+Time Complexity O(2n) and Space Complexity O(1)
