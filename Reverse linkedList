@@ -1,0 +1,40 @@
+
+//Two Pointer Approach
+class Solution {
+    public ListNode reverseList(ListNode head) {
+      
+        if(head == null || head.next == null){
+            return head;
+        }
+        
+        ListNode prevNode = head;
+        ListNode currentNode = head.next;
+        while(currentNode != null){
+            ListNode nextNode = currentNode.next;
+            currentNode.next = prevNode;
+            
+            //updating nodes
+            prevNode = currentNode;
+            currentNode = nextNode;
+        }
+        head.next = null;
+        head = prevNode;
+        return head;
+    }
+}
+
+Time Complexity O(n) and Space Complexity O(1)
+
+//Recursion Method Approach
+
+public class Solution {
+    public ListNode reverseList(ListNode head) {
+        if(head==null || head.next==null)
+            return head;
+        ListNode nextNode=head.next;
+        ListNode newHead=reverseList(nextNode);
+        nextNode.next=head;
+        head.next=null;
+        return newHead;
+    }
+}
