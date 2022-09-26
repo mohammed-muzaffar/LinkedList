@@ -1,0 +1,42 @@
+
+class Solution {
+    public Node copyRandomList(Node head) {
+        
+        //step 1: creating copy node in middle of original nodes
+        Node current = head;
+        Node front = head;
+        while(current != null){
+            front = current.next;
+            Node copy = new Node(current.val);
+            current.next = copy;
+            copy.next = front;
+            current = front;
+        }
+        
+        
+        //step 2: find random of the copy nodes of the original list
+        current = head;
+        while(current != null){
+            if(current.random != null){
+                current.next.random = current.random.next;
+            }
+             current = current.next.next;
+        }
+        
+        //step 3: separating two lists
+        current = head;
+        Node dummyNode = new Node(0);
+        Node copy = dummyNode;
+        while(current != null){
+             front = current.next.next;
+            
+             copy.next = current.next;
+             copy = copy.next;
+            
+             current.next = front;
+             
+             current = front;
+        }
+        return dummyNode.next;
+    }
+}
